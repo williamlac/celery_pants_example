@@ -1,0 +1,17 @@
+# Ignore the virtual environment directory
+venv/
+
+# Ignore the docs folder
+docs/
+
+# Ignore data files of containers set up by docker-compose
+docker/
+
+# Ignore unnecessary files in root dir
+README.md
+.gitignore
+.env
+.env.dist
+docker-compose.yml
+
+*.log

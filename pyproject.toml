@@ -1,0 +1,31 @@
+[tool.ruff]
+line-length = 120 # Maximum number of characters allowed in a line
+
+[tool.ruff.lint]
+extend-select = ["Q", "RUF100", "C90", "UP", "I", "T", "E", "F", "D", "N818"]  # Specific rules to include in linting
+extend-ignore = [
+    "D100", # docstring in public module
+    "D104", # docstring in public package
+    "D105", # docstring in magic method
+    "D106", # docstring in public nested class
+    "D107", # docstring in __init__
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["backend"]
+combine-as-imports = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google" # Use Google style guide conventions
+
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/**/*.py" = ["D"] # Disable specific linting rules for all Python files in the tests directory
+
+[tool.pyright]
+typeCheckingMode = 'strict' # Set the type checking mode to strict for increased type enforcement
+reportMissingTypeStubs = false # Do not report errors for missing type stubs
+
+[tool.coverage.report]
+fail_under = 100
+skip_covered = true
+show_missing = true

@@ -1,0 +1,33 @@
+[GLOBAL]
+pants_version = "2.21.0"
+backend_packages = [
+  "pants.backend.build_files.fmt.ruff",
+  "pants.backend.python",
+  "pants.backend.experimental.python.lint.ruff.check",
+  "pants.backend.experimental.python.lint.ruff.format",
+  "pants.backend.experimental.python.typecheck.pyright",
+  "pants.backend.docker",
+  "pants.backend.docker.lint.hadolint"
+]
+
+[python]
+interpreter_constraints = ["==3.11.*"]
+pip_version = "24.0"
+enable_resolves = true
+
+[python.resolves]
+ruff = "3rdparty/python/ruff.lock"
+python-default = "python-default.lock"
+
+[python-infer]
+use_rust_parser = true
+
+[ruff]
+install_from_resolve = "ruff"
+config_discovery = true
+
+[environments-preview.names]
+python_slim = "//src/docker:python_slim"
+
+[update-build-files]
+formatter = "ruff"

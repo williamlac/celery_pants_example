@@ -1,0 +1,21 @@
+-c requirements.txt
+
+# Development
+watchfiles==0.21.0
+
+# Testing
+asgi-lifespan==2.1.0
+coverage==7.4.3
+devtools==0.12.2
+faker==23.3.0
+httpx==0.27.0
+mongomock-motor==0.0.28
+pytest==8.0.2
+time-machine==2.13.0
+
+# Lint
+ruff==0.3.0
+pyright==1.1.365
+
+# Pre commit
+pre-commit==3.6.2

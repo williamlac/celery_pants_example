@@ -1,0 +1,7 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY src.python.backend/celery_app.pex /bin/app
+ENTRYPOINT [ "/bin/app" ]
+CMD celery -A tasks worker --loglevel=info

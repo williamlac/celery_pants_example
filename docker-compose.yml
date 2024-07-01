@@ -1,0 +1,29 @@
+# Docker-compose file for a dev environment. You probably want to use this with the --env-file=.env.dev CLI argument.
+version: "3"
+services:
+  backend:
+    container_name: backend
+    restart: unless-stopped
+    image: my_backend:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - UVICORN_RELOAD=true
+
+  celery:
+    image: my_celery:latest
+    command: --help
+    ports:
+      - "6200:6200"
+    links:
+      - rabbit
+    user: nobody
+    depends_on:
+      - rabbit
+
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
