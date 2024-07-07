@@ -2,6 +2,21 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY src.python.backend/celery_app.pex /bin/app
-ENTRYPOINT [ "/bin/app" ]
-CMD celery -A tasks worker --loglevel=info
+# COPY src.python.backend/celery_app.pex /bin/app
+# ENTRYPOINT [ "/bin/app/__main__.py" ]
+
+# Use a base image with Python
+# Set environment variables
+ENV PEX_ROOT=/pex
+
+# Copy the PEX binary into the container
+COPY src.python.backend/celery_app.pex /app/celery_app.pex
+
+# Set the working directory
+WORKDIR /app
+
+# Ensure the PEX binary is executable
+RUN chmod +x celery_app.pex
+
+# Define the entry point to run the PEX binary with the Celery command
+ENTRYPOINT ["/app/celery_app.pex", "celery", "-A", "tasks", "worker"]

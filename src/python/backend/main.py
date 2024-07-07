@@ -14,7 +14,8 @@ if __name__ == "__main__":
     
     @app.get("/celery")
     async def test_celery():
-        add.apply_async((2,2))
+        t = add.apply_async((2,2))
+        t2 = add.delay(3,3)
         return {"message": "Triggered"}
     
     uvicorn.run(app, host="0.0.0.0", port=8000) 
