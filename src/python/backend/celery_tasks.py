@@ -37,7 +37,7 @@ celery_app.config_from_object(CELERY_SETTINGS)
 celery_app.autodiscover_tasks()
 
 
-@celery_app.task(queue="tasks")  # type: ignore
+@celery_app.task(queue="tasks", name="tasks.add")  # type: ignore
 def add(x, y):  # type: ignore
     """Test.
 
